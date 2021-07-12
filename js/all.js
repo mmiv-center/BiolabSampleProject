@@ -334,6 +334,7 @@ function computeForAllPlates(setup, init) {
         if (plate2 == null) {
             console.log("no plate2!");
         }
+        setup.cutoff_single_replication = jQuery('#replicationThreshold').val();
         Promise.all(fitFunctions(plate, plate2, setup)).then(function() {
             setup['function_fits'] = parameter; // a global parameter
             // add a table
@@ -419,7 +420,8 @@ function plotOnePlate(plateNr) {
     // lets trigger the vizes/plotOnePlate.js
     // import * as THREE from './three.module.js';
     //import { setupPlotOnePlate } as setupPlotOnePlate from './vizes/plotOnePlate.js'; 
-    
+    setup.cutoff_single_replication = jQuery('#replicationThreshold').val();
+
     // we should compute the function fit for each of the plate pairs
     Promise.all(fitFunctions(plate, plate2, setup)).then(function() {
         setup['function_fits'] = parameter; // a global parameter
@@ -547,12 +549,14 @@ function fitFunctions(plate, plate2, setup) {
     }
     target = "Cell control";
     var idxCell = setup.columnContent.indexOf(target);
-    var q = quantiles([...data.y[idxCell][0], ...data.y[idxCell][1]], [0.25, 0.5, 0.75]);
-    
+    // var q = quantiles([...data.y[idxCell][0], ...data.y[idxCell][1]], [0.25, 0.5, 0.75]);
+    // setup.cutoff_single_replication
+
     if (idxCell != -1) {
         // remove any values above 0.14 (but lets use the lower quartile value)
-        var d = robustMean([...data.y[idxCell][0], ...data.y[idxCell][1]].filter(function(a) { if (a > q[1]) return false; return true; }), 2.0); // factor for stdMultiple
-        d['cutoff_q_50'] = q[1];
+        var d = robustMean([...data.y[idxCell][0], ...data.y[idxCell][1]].filter(function(a) { if (a > setup.cutoff_single_replication) return false; return true; }), 2.0); // factor for stdMultiple
+        //d['cutoff_q_50'] = q[1];
+        d['cutoff_single_replication'] = setup.cutoff_single_replication;
         for (var i = 0; i < parameter.length; i++) {
             parameter[i].min = d;
         }
@@ -572,7 +576,7 @@ function fitFunctions(plate, plate2, setup) {
         Object.keys(parameter[0].min).map(function(x) {
             var v = parameter[0].min[x];
             if (v > 0 && v < 1) {
-                v = v.toFixed(5);
+                v = (+v).toFixed(5);
             }
             return x + " = " + v;
         }).join(", ") + "</div>" );

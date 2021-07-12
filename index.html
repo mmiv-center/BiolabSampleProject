@@ -44,10 +44,18 @@
     <div class="container" id="drophere">
       <div class="row">
         <div class="md-12" style="margin-top: 15px;">
-          <div id="setup">
+          <div>
             <p>A test system for biolab work at Haukeland University Hospital. Please upload your data files by drag & drop.</p>
           </div>
+          <div>
+            <div class="form-group">
+              <label for="replicationThreshold">Replication threshold for cell control</label>
+              <input type="float" class="form-control" id="replicationThreshold" aria-describedby="replicationThresholdHelp" placeholder="Enter replication threshold (0.14)" value="0.14">
+              <small id="replicationThresholdHelp" class="form-text text-muted">The base replication threshold is 0.14. For cell control measures we will compute the mean of all values below this threshold.</small>
+            </div>
+          </div>
           <div id="message"></div>
+          <div id="setup"> </div>
           <div id="res" style="height: 425px;"></div>
           <div id="out" style="display: inline-flex; flex-flow: row wrap;"></div>
           <div id="canvas" style="height: 500px; border: 1px solid gray; border-radius: 3px;"></div>
