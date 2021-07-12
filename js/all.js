@@ -198,6 +198,10 @@ function handleDrop(e) {
                 
                 // now split the afterTableText
                 var parts = afterTableText.split("//");
+                if (parts.length < 2) {
+                    alert("Warning: We assume that plat layout rows end in double '//' characters. Is that the case here?");
+                }
+
                 var participantsByPlate = {};
                 for (var i = 0; i < parts.length; i++) {
                     var pp = parts[i].split(":");
