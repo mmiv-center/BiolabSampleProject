@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Calculate for ELISA</title>
+  </head>
+  <body>
+    <header class="p-3 bg-dark text-white">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <!-- <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+            <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+          </a> -->
+  
+          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="#" class="nav-link px-2 text-secondary">Calculate for ELISA</a></li>
+          <!--  <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+            <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+            <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+            <li><a href="#" class="nav-link px-2 text-white">About</a></li> -->
+          </ul>
+  
+<!--          <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+            <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+          </form> -->
+  
+          <div class="text-end" id="filename"></div>
+         <!-- <div class="text-end">
+            <button type="button" class="btn btn-outline-light me-2">Login</button>
+            <button type="button" class="btn btn-warning">Sign-up</button>
+          </div> -->
+        </div>
+      </div>
+    </header>
+
+
+    <div class="container" id="drophere">
+      <div class="row">
+        <div class="md-12" style="margin-top: 15px;">
+          <div id="setup">
+            <p>A test system for biolab work at Haukeland University Hospital. Please upload your data files by drag & drop.</p>
+          </div>
+          <div id="message"></div>
+          <div id="res" style="height: 425px;"></div>
+          <div id="out" style="display: inline-flex; flex-flow: row wrap;"></div>
+          <div id="canvas" style="height: 500px; border: 1px solid gray; border-radius: 3px;"></div>
+          <hr>
+          <h4>Data for all plates</h4>
+          <div id="master-table"></div>
+          <button class="btn btn-primary" id="download-table" title="Download table data as csv">Download</button>
+          <hr>
+        </div>
+       </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!--<script src="js/jquery-3.2.1.min.js"></script> -->
+    <script src="js/amd_core-1.0.1.min.js"></script>
+<!--    <script src="js/amd_ww-2.0.0.min.js"></script>
+   <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/amd_cf_worker-1.2.1.min.js"></script>
+    <script src="js/amd_cf-2.0.0.min.js"></script> -->
+
+    <script src="js/popper.min.js"></script>
+    <!-- <script src="js/bootstrap.min.js"></script> -->
+    <script src="js/colorbrewer.js"></script>
+    <script src="js/xlsx.full.min.js"></script>
+    <script src="js/docx4js.js"></script>
+    <script type="module" src="js/vizes/plotOnePlate.js"></script>
+    
+    <script type="module" src="js/all.js"></script>
+  </body>
+</html>

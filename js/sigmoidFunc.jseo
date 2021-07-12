@@ -1,0 +1,46 @@
+{
+    /*Below are the two requried parameters*/
+    "func": function (xVector, P) {
+        // L / (1 + exp(-k(x-x0))
+        // P[0] is k
+        // P[1] is x0
+        // var L = this.func_fit_params.L;
+        return 1.0 / (1.0 + Math.exp(-P[0]*(xVector[0] - P[1]))); // P[0] * Math.pow(xVector[0],3) + P[1];
+    },
+    "setInitial": function (x_mat, y_vec) {
+        // For other data, this must be made more intelligent
+        var A = ( y_vec[1] - y_vec[0] ) / (Math.pow(x_mat[1][0], 3) - Math.pow(x_mat[0][0], 3));
+        var B = y_vec[0] - A * Math.pow(x_mat[0][0], 3);
+        B = 0; // should be middle of the xses
+        for (var i = 0; i < x_mat.length; i++) {
+            B = B + parseFloat(x_mat[i][0]);
+        }
+        B /= x_mat.length;
+        console.log("initial x0 is: " + B);
+        A = 1.0;
+        return [A, B];
+    },
+    
+    /*Below is a functional optional parameter, 
+        any number of the internal parameters may be left off*/
+    "func_fit_params": {
+        "maxItt": 1010,     /*Default: 1000*/
+        "minPer": 0.9e-6,   /*Default: 1e-6*/
+        "checkItt": 4,      /*Default: 3*/
+        "converge": 1.21,   /*Default: 1.2*/
+        "diverge": -0.51,   /*Default: -0.5*/
+        "step": function (initParameters) {
+            var ret = [];
+            for (var i = 0; i < initParameters.length; i += 1) {
+                ret[i] = initParameters[i]/105; /*Default: x/100*/
+            }
+            return ret;
+        }
+    },
+
+    /*Below are completely optional, non functional parameters 
+        any number may be added, these and all other parameters are
+        static.*/
+    "description":  "For fitting two parameter sigmoidal function",
+    "stringified": "1 / (1 + exp(-k(x-x0))"
+}
